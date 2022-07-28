@@ -28,8 +28,7 @@ export async function getServerSideProps(context: {
   return { props: { 1: context.params } };
 }
 
-export default function redirector(context) {
-  console.log("context", context);
+export default function redirector() {
   return (
     <>
       <h1>Short URL Page bruh</h1>
