@@ -24,32 +24,30 @@ __webpack_require__.r(__webpack_exports__);
 
 async function getServerSideProps(context) {
     // Fetch data from external API
-    try {
-        (0,_api__WEBPACK_IMPORTED_MODULE_2__.doesShortURLExist)(context.params.shortURL).then((success)=>{
-            console.log("success", success);
+    return (0,_api__WEBPACK_IMPORTED_MODULE_2__.doesShortURLExist)(context.params.shortURL).then((res)=>{
+        console.log("res", res);
+        if (res.data.Items.length === 0) {
+            console.log("hereeeeee");
             return {
-                redirect: {
-                    permanent: false,
-                    destination: "https://google.com"
-                }
+                props: {}
             };
-        }, (reject)=>{
-            console.log("reject", reject);
-        });
-    } catch (error) {
-        console.log("error is", error);
-    }
-    return {
-        props: {
-            1: context.params
         }
+        return {
+            redirect: {
+                permanent: false,
+                destination: "http://" + res.data.Items[0]?.originalURL
+            }
+        };
+    });
+    return {
+        props: {}
     };
 }
 function redirector() {
     return /*#__PURE__*/ (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
         children: [
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx("h1", {
-                children: "Short URL Page bruh"
+                children: "Redirect didnt worked!"
             }),
             /*#__PURE__*/ react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx((next_link__WEBPACK_IMPORTED_MODULE_1___default()), {
                 href: "/",

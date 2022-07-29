@@ -6,32 +6,27 @@ export async function getServerSideProps(context: {
   params: { shortURL: string };
 }) {
   // Fetch data from external API
-  try {
-    doesShortURLExist(context.params.shortURL).then(
-      (success) => {
-        console.log("success", success);
-        return {
-          redirect: {
-            permanent: false,
-            destination: "https://google.com",
-          },
-        };
-      },
-      (reject) => {
-        console.log("reject", reject);
-      }
-    );
-  } catch (error) {
-    console.log("error is", error);
-  }
+  return doesShortURLExist(context.params.shortURL).then((res) => {
+    console.log("res", res);
+    if (res.data.Items.length === 0) {
+      console.log("hereeeeee");
+      return { props: {} };
+    }
 
-  return { props: { 1: context.params } };
+    return {
+      redirect: {
+        permanent: false,
+        destination: "http://" + res.data.Items[0]?.originalURL,
+      },
+    };
+  });
+  return { props: {} };
 }
 
 export default function redirector() {
   return (
     <>
-      <h1>Short URL Page bruh</h1>
+      <h1>Redirect didnt worked!</h1>
       <Link href="/">
         <a>Go back home</a>
       </Link>

@@ -1,10 +1,12 @@
 import type { NextPage } from "next";
+import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { FormEvent, useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { randomBytes } from "crypto";
-import { doesOriginalURLExist, doesShortURLExist, getShortURL } from "./api";
+import { doesOriginalURLExist, getShortURL } from "./api";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const Home: NextPage = () => {
   const [originalURL, setOriginalURL] = useState("");
@@ -12,33 +14,40 @@ const Home: NextPage = () => {
   const [copyStatus, setCopyStatus] = useState("");
 
   const copiedText = "Copied!";
-  // prettier-ignore
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(shortURL);
+    setCopyStatus(copiedText);
+  };
 
   const getShortenLink = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setShortURL("")
-    const urlPattern =  /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm
+    setShortURL("");
+    const urlPattern =
+      /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/gm;
     // check if regex is true
     if (urlPattern.test(originalURL)) {
       setOriginalURL("");
       // fetch short url
       const shortURL = randomBytes(3).toString("hex");
       doesOriginalURLExist(originalURL).then((res) => {
-        if(res.data.Item) {
-         alert("The url already exists!")
-         return;
+        if (res.data.Item) {
+          alert("The url already exists!");
+          return;
         }
-        getShortURL({ originalURL: originalURL, shortURL: shortURL }).then(() => {
-          setShortURL("rufly.ml/" + shortURL);
-        });
-      })
+        getShortURL({ originalURL: originalURL, shortURL: shortURL }).then(
+          () => {
+            setShortURL("rufly.ml/" + shortURL);
+          }
+        );
+      });
       /*
       getShortURL({ originalURL: originalURL, shortURL: shortURL }).then(() => {
         setShortURL("rufly.ml/" + shortURL);
       });
       */
     } else {
-      alert('The url is not correct.')
+      alert("The url is not correct.");
     }
   };
 
@@ -76,7 +85,7 @@ const Home: NextPage = () => {
           style={shortURL ? { display: "flex" } : {}}
         >
           <div
-            onClick={() => setCopyStatus(copiedText)}
+            onClick={() => copyToClipboard()}
             title="click to copy"
             className={styles.shortURL}
           >
