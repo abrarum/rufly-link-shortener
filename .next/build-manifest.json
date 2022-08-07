@@ -1,34 +1,42 @@
 {
   "polyfillFiles": [
-    "static/chunks/polyfills.js"
+    "static/chunks/polyfills-0d1b80a048d4787e.js"
   ],
-  "devFiles": [
-    "static/chunks/react-refresh.js"
-  ],
-  "ampDevFiles": [
-    "static/chunks/webpack.js",
-    "static/chunks/amp.js"
-  ],
+  "devFiles": [],
+  "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/development/_buildManifest.js",
-    "static/development/_ssgManifest.js"
+    "static/WXgJaauN3SyNGYC1BIKiN/_buildManifest.js",
+    "static/WXgJaauN3SyNGYC1BIKiN/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
     "/": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/index.js"
+      "static/chunks/webpack-71e149bd9a6f2c0d.js",
+      "static/chunks/framework-ae4f43955bfa5ddc.js",
+      "static/chunks/main-3cf1b4d0a841b0b4.js",
+      "static/chunks/fec483df-2f237fce5f7aa66f.js",
+      "static/chunks/132-681b4f457c5776b3.js",
+      "static/css/2cb4720b4919c9f3.css",
+      "static/chunks/pages/index-eae2a9a39a7b5d89.js"
+    ],
+    "/[shortURL]": [
+      "static/chunks/webpack-71e149bd9a6f2c0d.js",
+      "static/chunks/framework-ae4f43955bfa5ddc.js",
+      "static/chunks/main-3cf1b4d0a841b0b4.js",
+      "static/chunks/pages/[shortURL]-7e26043d1479e294.js"
     ],
     "/_app": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/_app.js"
+      "static/chunks/webpack-71e149bd9a6f2c0d.js",
+      "static/chunks/framework-ae4f43955bfa5ddc.js",
+      "static/chunks/main-3cf1b4d0a841b0b4.js",
+      "static/css/6fe144f867809627.css",
+      "static/chunks/pages/_app-77ff40da4b27b71c.js"
     ],
     "/_error": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/_error.js"
+      "static/chunks/webpack-71e149bd9a6f2c0d.js",
+      "static/chunks/framework-ae4f43955bfa5ddc.js",
+      "static/chunks/main-3cf1b4d0a841b0b4.js",
+      "static/chunks/pages/_error-7397496ca01950b1.js"
     ]
   },
   "ampFirstPages": []
