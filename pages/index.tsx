@@ -30,16 +30,9 @@ const Home: NextPage = () => {
       setOriginalURL("");
       // fetch short url
       const shortURL = randomBytes(3).toString("hex");
-      doesOriginalURLExist(originalURL).then((res) => {
-        if (res.data.Item) {
-          alert("The url already exists!");
-          return;
-        }
-        getShortURL({ originalURL: originalURL, shortURL: shortURL }).then(
-          () => {
-            setShortURL("rufly.ml/" + shortURL);
-          }
-        );
+
+      getShortURL({ originalURL: originalURL, shortURL: shortURL }).then(() => {
+        setShortURL("rufly.ml/" + shortURL);
       });
       /*
       getShortURL({ originalURL: originalURL, shortURL: shortURL }).then(() => {
@@ -73,11 +66,13 @@ const Home: NextPage = () => {
 
         <form onSubmit={(e) => getShortenLink(e)} className={styles.urlinput}>
           <input
+            title=""
+            className={styles.linkInput}
             value={originalURL}
             onChange={(e) => setOriginalURL(e.target.value)}
             required
           />
-          <button type="submit">Shorten Link</button>
+          <input type="submit" value="" className={styles.linkButton} />
         </form>
 
         <div
