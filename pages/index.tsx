@@ -33,11 +33,11 @@ const Home: NextPage = () => {
       const shortURL = randomBytes(3).toString("hex");
 
       getShortURL({ originalURL: originalURL, shortURL: shortURL }).then(() => {
-        setShortURL("rufly.ml/" + shortURL);
+        setShortURL("https://rufly-link-shortener.vercel.app/" + shortURL);
       });
       /*
       getShortURL({ originalURL: originalURL, shortURL: shortURL }).then(() => {
-        setShortURL("rufly.ml/" + shortURL);
+        setShortURL("https://rufly-link-shortener.vercel.app/" + shortURL);
       });
       */
     } else {
@@ -123,8 +123,8 @@ const Home: NextPage = () => {
       </main>
 
       <footer className={styles.footer}>
-        <a href="https://rufly.ml" target="_blank" rel="noopener noreferrer">
-          rufly.ml
+        <a href="https://rufly-link-shortener.vercel.app/" target="_blank" rel="noopener noreferrer">
+          rufly
         </a>
       </footer>
     </div>
